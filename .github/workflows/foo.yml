@@ -12,5 +12,6 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+      - run: yarn install
       - name: push message
-        run: npx tsx ./src/bot-push.ts --webhook=${{ secrets.DINGDINGBOT_WEBHOOK }} --secret=${{ secrets.DINGDINGBOT_SECRET }}
+        run: yarn run tsx ./src/bot-push.ts --webhook=${{ secrets.DINGDINGBOT_WEBHOOK }} --secret=${{ secrets.DINGDINGBOT_SECRET }}
