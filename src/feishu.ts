@@ -11,6 +11,7 @@ const padZero = (x: any) => ('' + x).padStart(2, '0');
 const format = (d: Date) =>
   `${padZero(d.getMonth() + 1)}-${padZero(d.getDate())}`;
 const nowstr = format(now);
+console.log(nowstr);
 
 /** 推送给机器人 */
 async function pushToBot(msg: string) {
@@ -21,13 +22,12 @@ async function pushToBot(msg: string) {
   await axios.post(webhook, {
     msg_type: 'text',
     content: {
-      text: `[干饭 bot 🍚]: ${msg}`,
+      text: `[干饭 bot 🍚]: <at user_id="all">所有人</at>  ${msg}`,
     },
   });
 }
 
 function isInvalidDate() {
-  console.log(nowstr);
   const whiteDays = [
     '01-01',
     '05-01',
@@ -59,14 +59,17 @@ const wordList = [
   '哪里有天才，我只不过是把别人订饭的时间都用在工作上了。',
   '不在沉默中爆发，就在沉默中订饭。',
   '全体目光向我看齐，看我看我，我宣布一件事，你还没订饭',
-  '2023 年十大热门关键词，',
+  '干饭 Bot 最喜欢的城市是米来，其次是爱订堡',
+  '没时间解释了，快订饭',
+  '不会吧不会吧，这个群里不会还有人没订饭吧，李斌都要笑死了 🤣',
+  '再不订饭就没有水果了啊',
 ];
 
 if (!isInvalidDate()) {
   let msg =
     wordList[Math.floor(Math.random() * wordList.length)] || wordList[0];
   if (nowstr === '02-14') {
-    msg = '🐶 🥢 🍚';
+    msg = '快订饭吧，情人节你也要 9 点下班不是吗';
   }
   if (nowstr === '12-31') {
     msg = '2023 年本群十大热词，第一居然是订饭';
