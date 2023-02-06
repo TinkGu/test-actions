@@ -1,0 +1,24 @@
+# 帅帅的飞书订餐提醒机器人
+name: Fan Bot
+on:
+  schedule:
+    - cron: '05 10 * * 1-5'
+    - cron: '05 17 * * 1-5'
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤1 拉取仓库代码
+      - uses: actions/checkout@v3
+      # 步骤2 给当前服务器安装node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install
+      - name: push message
+        run: yarn run tsx ./src/feishu.ts --webhook=${{ secrets.DONGSHUAI_FEISHU_BOT }}
