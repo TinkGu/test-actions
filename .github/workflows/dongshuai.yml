@@ -2,11 +2,8 @@
 name: Fan Bot
 on:
   schedule:
-    - cron: '05 10 * * 1-5'
-    - cron: '05 17 * * 1-5'
-
-env:
-  TZ: Asia/Shanghai
+    - cron: '05 2 * * 1-5'
+    - cron: '05 9 * * 1-5'
 
 jobs:
   job1:
